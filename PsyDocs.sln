@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PsyDocs.Web", "PsyDocs.Web\PsyDocs.Web.csproj", "{B58D17BE-C0C2-4A08-BD22-E28F818DACBC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PsyDocs.Data", "PsyDocs.Data\PsyDocs.Data.csproj", "{7DFC2706-66EB-429D-97C5-1F05F715192D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PsyDocs.Utils", "PsyDocs.Utils\PsyDocs.Utils.csproj", "{96ADE24C-3520-4164-995C-DC185245E1B4}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PsyDocs.Database", "PsyDocs.Database\PsyDocs.Database.sqlproj", "{B73F0263-8D0D-4ECC-9029-D2146EA06C54}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://belanger-simon.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = PsyDocs.Web\\PsyDocs.Web.csproj
+		SccProjectName1 = PsyDocs.Web
+		SccLocalPath1 = PsyDocs.Web
+		SccProjectUniqueName2 = PsyDocs.Data\\PsyDocs.Data.csproj
+		SccProjectName2 = PsyDocs.Data
+		SccLocalPath2 = PsyDocs.Data
+		SccProjectUniqueName3 = PsyDocs.Utils\\PsyDocs.Utils.csproj
+		SccProjectName3 = PsyDocs.Utils
+		SccLocalPath3 = PsyDocs.Utils
+		SccProjectUniqueName4 = PsyDocs.Database\\PsyDocs.Database.sqlproj
+		SccProjectName4 = PsyDocs.Database
+		SccLocalPath4 = PsyDocs.Database
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B58D17BE-C0C2-4A08-BD22-E28F818DACBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B58D17BE-C0C2-4A08-BD22-E28F818DACBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B58D17BE-C0C2-4A08-BD22-E28F818DACBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B58D17BE-C0C2-4A08-BD22-E28F818DACBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DFC2706-66EB-429D-97C5-1F05F715192D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DFC2706-66EB-429D-97C5-1F05F715192D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DFC2706-66EB-429D-97C5-1F05F715192D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DFC2706-66EB-429D-97C5-1F05F715192D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96ADE24C-3520-4164-995C-DC185245E1B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96ADE24C-3520-4164-995C-DC185245E1B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96ADE24C-3520-4164-995C-DC185245E1B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96ADE24C-3520-4164-995C-DC185245E1B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B73F0263-8D0D-4ECC-9029-D2146EA06C54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B73F0263-8D0D-4ECC-9029-D2146EA06C54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B73F0263-8D0D-4ECC-9029-D2146EA06C54}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B73F0263-8D0D-4ECC-9029-D2146EA06C54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B73F0263-8D0D-4ECC-9029-D2146EA06C54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B73F0263-8D0D-4ECC-9029-D2146EA06C54}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

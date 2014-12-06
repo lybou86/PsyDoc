@@ -1,0 +1,42 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[Adresse] (Table)
+       [dbo].[Client] (Table)
+       [dbo].[Client].[IX_AdresseId] (Index)
+       [dbo].[Client].[IX_DossierId] (Index)
+       [dbo].[Document] (Table)
+       [dbo].[Dossier] (Table)
+       [dbo].[Seance] (Table)
+       [dbo].[Seance].[IX_TherapieId] (Index)
+       [dbo].[Section] (Table)
+       [dbo].[Section].[IX_DocumentId] (Index)
+       [dbo].[Section].[IX_TypeSectionId] (Index)
+       [dbo].[Therapie] (Table)
+       [dbo].[Therapie].[IX_DossierId] (Index)
+       [dbo].[TypeDocument] (Table)
+       [dbo].[TypeDocumentTypeSection] (Table)
+       [dbo].[TypeSection] (Table)
+       [dbo].[Utilisateur] (Table)
+       [dbo].[DF_Document_Discriminator] (Default Constraint)
+       [dbo].[DF_Utilisateur_EstAdministrateur] (Default Constraint)
+       [dbo].[FK_dbo.Client_dbo.Adresse_AdresseId] (Foreign Key)
+       [dbo].[FK_dbo.Client_dbo.Dossier_DossierId] (Foreign Key)
+       [dbo].[FK_Dossier_Utilisateur] (Foreign Key)
+       [dbo].[FK_dbo.Seance_dbo.Therapie_TherapieId] (Foreign Key)
+       [dbo].[FK_dbo.Section_dbo.Document_DocumentId] (Foreign Key)
+       [dbo].[FK_dbo.Section_dbo.TypeSection_TypeSectionId] (Foreign Key)
+       [dbo].[FK_dbo.Therapie_dbo.Dossier_DossierId] (Foreign Key)
+       [dbo].[FK_TypeDocumentTypeSection_TypeDocument] (Foreign Key)
+       [dbo].[FK_TypeDocumentTypeSection_TypeSection] (Foreign Key)
+
+** Supporting actions

@@ -1,0 +1,23 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[Adresse] (Table)
+       [dbo].[Client] (Table)
+       [dbo].[Client].[IX_AdresseId] (Index)
+       [dbo].[Client].[IX_DossierId] (Index)
+       [dbo].[FK_dbo.Client_dbo.Adresse_AdresseId] (Foreign Key)
+       [dbo].[FK_dbo.Client_dbo.Dossier_DossierId] (Foreign Key)
+
+** Supporting actions
+
+The project and target databases have different collation settings. Deployment errors might occur.
+

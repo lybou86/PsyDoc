@@ -1,0 +1,5 @@
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Utils\bin\Debug\PsyDocs.Utils.dll
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Utils\bin\Debug\PsyDocs.Utils.pdb
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Utils\obj\Debug\PsyDocs.Utils.csprojResolveAssemblyReference.cache
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Utils\obj\Debug\PsyDocs.Utils.dll
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Utils\obj\Debug\PsyDocs.Utils.pdb

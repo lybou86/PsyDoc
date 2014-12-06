@@ -1,0 +1,35 @@
+﻿@section sidebar
+{
+    <ul class="sidebar-nav">
+        <li>
+            <a ui-sref="home.dashboard" ui-sref-active="active">
+                <i class="hi hi-th-large sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Tableau de bord</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="sidebar-nav-menu" target="_self">
+                <i class="gi gi-folder_open sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Dossiers</span>
+                <i class="fa fa-chevron-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+            </a>
+            <ul>
+                <li>
+                    <a href="/dossiers/recherche" target="_self">
+                        <i class="hi hi-search sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Recherche</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/dossiers/nouveau" target="_self">
+                        <i class="gi gi-folder_plus sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Nouveau</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+}
+
+<ui-view/>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/app/home")
+}

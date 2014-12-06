@@ -1,0 +1,35 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [dbo].[Dossier]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The column [dbo].[Dossier].[ModaliteTraitementId] on table [dbo].[Dossier] must be added, but the column has no default
+         value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue
+         you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of
+         smart-defaults as a deployment option.
+
+** User actions
+     Drop
+       [dbo].[FK_Dossier_Utilisateur] (Foreign Key)
+     Table rebuild
+       [dbo].[Dossier] (Table)
+     Create
+       [dbo].[ModaliteTraitement] (Table)
+       [dbo].[DF_ModaliteTraitement_Id] (Default Constraint)
+       [dbo].[FK_Dossier_Utilisateur] (Foreign Key)
+       [dbo].[FK_Dossier_ModaliteTraitement] (Foreign Key)
+
+** Supporting actions
+     Drop
+       [dbo].[FK_dbo.Therapie_dbo.Dossier_DossierId] (Foreign Key)
+       [dbo].[FK_dbo.Client_dbo.Dossier_DossierId] (Foreign Key)
+     Create
+       [dbo].[FK_dbo.Therapie_dbo.Dossier_DossierId] (Foreign Key)
+       [dbo].[FK_dbo.Client_dbo.Dossier_DossierId] (Foreign Key)
+
+The column [dbo].[Dossier].[ModaliteTraitementId] on table [dbo].[Dossier] must be added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+The project and target databases have different collation settings. Deployment errors might occur.
+

@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PsyDocsModelStoreContainer" CdmEntityContainer="PsyDocsContext">
+    <EntitySetMapping Name="Adresses">
+      <EntityTypeMapping TypeName="PsyDocsModel.Adresse">
+        <MappingFragment StoreEntitySet="Adresse">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AdresseCivique" ColumnName="AdresseCivique" />
+          <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+          <ScalarProperty Name="Province" ColumnName="Province" />
+          <ScalarProperty Name="Pays" ColumnName="Pays" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="PsyDocsModel.Client">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AdresseId" ColumnName="AdresseId" />
+          <ScalarProperty Name="DossierId" ColumnName="DossierId" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="NumeroTelephone" ColumnName="NumeroTelephone" />
+          <ScalarProperty Name="Sexe" ColumnName="Sexe" />
+          <ScalarProperty Name="Courriel" ColumnName="Courriel" />
+          <ScalarProperty Name="DateDeNaissance" ColumnName="DateDeNaissance" />
+          <ScalarProperty Name="Reference" ColumnName="Reference" />
+          <ScalarProperty Name="NomAssureur" ColumnName="NomAssureur" />
+          <ScalarProperty Name="NumeroTelephoneAssureur" ColumnName="NumeroTelephoneAssureur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dossiers">
+      <EntityTypeMapping TypeName="PsyDocsModel.Dossier">
+        <MappingFragment StoreEntitySet="Dossier">
+          <ScalarProperty Name="ModaliteTraitementId" ColumnName="ModaliteTraitementId" />
+          <ScalarProperty Name="UtilisateurId" ColumnName="UtilisateurId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="Ouverture" ColumnName="Ouverture" />
+          <ScalarProperty Name="Fermeture" ColumnName="Fermeture" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Seances">
+      <EntityTypeMapping TypeName="PsyDocsModel.Seance">
+        <MappingFragment StoreEntitySet="Seance">
+          <ScalarProperty Name="AideMemoire" ColumnName="AideMemoire" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TherapieId" ColumnName="TherapieId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Duree" ColumnName="Duree" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sections">
+      <EntityTypeMapping TypeName="PsyDocsModel.Section">
+        <MappingFragment StoreEntitySet="Section">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+          <ScalarProperty Name="TypeSectionId" ColumnName="TypeSectionId" />
+          <ScalarProperty Name="Contenu" ColumnName="Contenu" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Therapies">
+      <EntityTypeMapping TypeName="PsyDocsModel.Therapie">
+        <MappingFragment StoreEntitySet="Therapie">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DossierId" ColumnName="DossierId" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeDocuments">
+      <EntityTypeMapping TypeName="PsyDocsModel.TypeDocument">
+        <MappingFragment StoreEntitySet="TypeDocument">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeSections">
+      <EntityTypeMapping TypeName="PsyDocsModel.TypeSection">
+        <MappingFragment StoreEntitySet="TypeSection">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Utilisateurs">
+      <EntityTypeMapping TypeName="PsyDocsModel.Utilisateur">
+        <MappingFragment StoreEntitySet="Utilisateur">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="NumeroTelephone" ColumnName="NumeroTelephone" />
+          <ScalarProperty Name="Courriel" ColumnName="Courriel" />
+          <ScalarProperty Name="MotDePasse" ColumnName="MotDePasse" />
+          <ScalarProperty Name="DateExpiration" ColumnName="DateExpiration" />
+          <ScalarProperty Name="EstAdministrateur" ColumnName="EstAdministrateur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documents">
+      <EntityTypeMapping TypeName="IsTypeOf(PsyDocsModel.Document)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="Titre" ColumnName="Titre" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(PsyDocsModel.DocumentExterne)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TypeMime" ColumnName="TypeMime" />
+          <ScalarProperty Name="Chemin" ColumnName="Chemin" />
+          <Condition ColumnName="Discriminator" Value="Externe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(PsyDocsModel.DocumentInterne)">
+        <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <Condition ColumnName="Discriminator" Value="Interne" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="TypeDocumentTypeSection" TypeName="PsyDocsModel.TypeDocumentTypeSection" StoreEntitySet="TypeDocumentTypeSection">
+      <EndProperty Name="TypeSection">
+        <ScalarProperty Name="Id" ColumnName="TypeSectionId" />
+      </EndProperty>
+      <EndProperty Name="TypeDocument">
+        <ScalarProperty Name="Id" ColumnName="TypeDocumentId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="ModaliteTraitements">
+      <EntityTypeMapping TypeName="PsyDocsModel.ModaliteTraitement">
+        <MappingFragment StoreEntitySet="ModaliteTraitement">
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

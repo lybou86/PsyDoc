@@ -1,0 +1,5 @@
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Database\bin\Debug\PsyDocs.Database.dacpac
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Database\bin\Debug\PsyDocs.Database.dll
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Database\bin\Debug\PsyDocs.Database.pdb
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Database\obj\Debug\PsyDocs.Database.dll
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Database\obj\Debug\PsyDocs.Database.pdb

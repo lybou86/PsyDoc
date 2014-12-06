@@ -1,0 +1,48 @@
+﻿@{
+    string basePath = ViewBag.BasePath ?? "/";
+}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Psydocs</title>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
+    <base href="@ViewBag.BasePath/"/>
+    @Styles.Render("~/content/vendors")
+    @Styles.Render("~/content/app")
+    @Scripts.Render("~/bundles/vendors/modernizr")
+</head>
+<body ng-app="psydocs">
+    <div id="page-wrapper" class="loading-indicator loading">
+        <div class="indicator"><div class="inner"><div class="spinner themed-background"></div></div></div>
+        <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
+            <div id="sidebar" class="sidebar">
+                <div id="sidebar-brand" class="themed-background">
+                    <a href="/" target="_self" class="sidebar-title">
+                        <span class="sidebar-nav-mini-hide"><strong>PSYDOCS</strong></span>
+                    </a>
+                </div>
+                
+                <div id="sidebar-scroll" slimscroll>
+                    <div class="sidebar-content">
+                        @RenderSection("sidebar", false)
+                    </div>
+                </div>
+            </div>
+            <div id="main-container">
+                @Html.Partial("_TopMenu")
+                <div id="page-content" loading-indicator="stateChanging" loading-top="50px">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/vendors")
+    @Scripts.Render("~/bundles/vendors/angular")
+    @Scripts.Render("~/bundles/app")
+    @RenderSection("scripts", false)
+</body>
+</html>
+

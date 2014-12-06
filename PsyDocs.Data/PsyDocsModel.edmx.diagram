@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="29729507112a44559095007192fe5993" Name="Diagram1">
+        <EntityTypeShape EntityType="PsyDocsModel.Adresse" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PsyDocsModel.Client" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="PsyDocsModel.Document" Width="1.5" PointX="8" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PsyDocsModel.Dossier" Width="1.5" PointX="0.625" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PsyDocsModel.Seance" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PsyDocsModel.Section" Width="1.5" PointX="10.5" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PsyDocsModel.Therapie" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PsyDocsModel.TypeDocument" Width="1.5" PointX="5" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PsyDocsModel.TypeSection" Width="1.5" PointX="7.875" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PsyDocsModel.Utilisateur" Width="1.5" PointX="11.625" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="PsyDocsModel.FK_dbo_Client_dbo_Adresse_AdresseId" ManuallyRouted="false" />
+        <AssociationConnector Association="PsyDocsModel.FK_dbo_Client_dbo_Dossier_DossierId" ManuallyRouted="false" />
+        <AssociationConnector Association="PsyDocsModel.FK_dbo_Therapie_dbo_Dossier_DossierId" ManuallyRouted="false" />
+        <AssociationConnector Association="PsyDocsModel.FK_dbo_Seance_dbo_Therapie_TherapieId" ManuallyRouted="false" />
+        <AssociationConnector Association="PsyDocsModel.FK_dbo_Section_dbo_TypeSection_TypeSectionId" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PsyDocsModel.DocumentInterne" Width="1.5" PointX="7" PointY="9.625" />
+        <EntityTypeShape EntityType="PsyDocsModel.DocumentExterne" Width="1.5" PointX="11.25" PointY="9.375" />
+        <InheritanceConnector EntityType="PsyDocsModel.DocumentExterne" />
+        <InheritanceConnector EntityType="PsyDocsModel.DocumentInterne" />
+        <AssociationConnector Association="PsyDocsModel.FK_Dossier_Utilisateur" />
+        <AssociationConnector Association="PsyDocsModel.FK_dbo_Section_dbo_Document_DocumentId" />
+        <AssociationConnector Association="PsyDocsModel.TypeDocumentTypeSection" />
+        <EntityTypeShape EntityType="PsyDocsModel.ModaliteTraitement" Width="1.5" PointX="5.375" PointY="11.875" />
+        <AssociationConnector Association="PsyDocsModel.FK_Dossier_ModaliteTraitement" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

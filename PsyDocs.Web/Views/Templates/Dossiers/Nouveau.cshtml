@@ -1,0 +1,273 @@
+﻿<div class="content-header">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="header-section">
+                <h1>Nouveau dossier</h1>
+            </div>
+        </div>
+        <div class="col-sm-6 hidden-xs">
+            <div class="header-section">
+                <ul class="breadcrumb breadcrumb-top">
+                    <li>Dossiers</li>
+                    <li>Nouveau</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form name="nouveau" novalidate ng-submit="create()">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="block form-horizontal">
+                <div class="block-title">
+                    <h2>Dossier</h2>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="numero">Numéro de dossier</label>
+                    <div class="col-md-9">
+                        <input type="text" id="numero" name="numero" class="form-control"
+                               ng-model="dossier.numero" ng-maxlength="50" ng-required="true"/>
+                        <validation-message for="numero" validator="maxlength" submitted="submitted">Le numéro de dossier ne peut dépasser 50 caractères</validation-message>
+                        <validation-message for="numero" validator="required" submitted="submitted">Le numéro de dossier est requis</validation-message>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="modalite">Modalité de traitement</label>
+                    <div class="col-md-9">
+                        <select class="form-control" name="modalite" id="modalite" ng-model="dossier.modaliteId" ng-options="m.id as m.nom for m in modalites"
+                                chosen disable-search="true" data-placeholder="Choisir la modalité"
+                                ng-required="true"></select>
+                        <validation-message for="modalite" validator="required" submitted="submitted">La modalité de traitement est requise</validation-message>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="reference">Référence</label>
+                    <div class="col-md-9">
+                        <input type="text" id="reference" name="reference" class="form-control" ng-model="dossier.reference"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="block form-horizontal">
+                <div class="block-title">
+                    <h2>Thérapie</h2>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="nomTherapie">Nom</label>
+                    <div class="col-md-9">
+                        <input type="text" id="nomTherapie" name="nomTherapie" class="form-control"
+                               ng-model="dossier.nomTherapie" ng-maxlength="50" ng-required="true"/>
+                        <validation-message for="nomTherapie" validator="maxlength" submitted="submitted">Le nom de la thérapie ne peut dépasser 50 caractères</validation-message>
+                        <validation-message for="nomTherapie" validator="required" submitted="submitted">Un nom de thérapie est requis</validation-message>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="modalite">Description</label>
+                    <div class="col-md-9">
+                        <textarea type="text" id="descriptionTherapie" name="descriptionTherapie" class="form-control" rows="3"
+                                  ng-model="dossier.descriptionTherapie" ng-maxlength="255"/>
+                        <validation-message for="descriptionTherapie" validator="maxlength" submitted="submitted">La description ne ne peut dépasser 255 caractères</validation-message>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block">
+                <div class="block-title">
+                    <h2>Clients</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <ul class="nav nav-pills nav-stacked" style="margin-top: 20px;">
+                            <li ng-repeat="client in dossier.clients track by $index" ng-class="{ active: isClientActive($index) }">
+                                <a href="javascript:void(0)" ng-click="selectClient($index)">
+                                    <strong>{{ nomClient(client) }}</strong>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="form-group form-actions">
+                            <div class="col-md-9 col-md-offset-3">
+                                <button type="button" ng-click="addClient()" class="btn btn-success" tooltip="Ajouter un client" tooltip-placement="bottom" ripple>
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div ng-if="hasSelectedClient()" ng-form="client">
+                            <div class="block-section form-horizontal">
+                                <h4 class="sub-header">
+                                    Information nominale
+                                </h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="prenomClient">Prénom</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="prenomClient" name="prenomClient" class="form-control"
+                                                       ng-model="selectedClient.prenom" ng-maxlength="100" ng-required="true"/>
+                                                <validation-message for="prenomClient" validator="maxlength" submitted="clientConfirmed">Le prénom d'un client ne peut dépasser 100 caractères</validation-message>
+                                                <validation-message for="prenomClient" validator="required" submitted="clientConfirmed">Le prénom du client est requis</validation-message>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="nomClient">Nom</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="nomClient" name="nomClient" class="form-control"
+                                                       ng-model="selectedClient.nom" ng-maxlength="100" ng-required="true"/>
+                                                <validation-message for="nomClient" validator="maxlength" submitted="clientConfirmed">Le nom d'un client ne peut dépasser 100 caractères</validation-message>
+                                                <validation-message for="nomClient" validator="required" submitted="clientConfirmed">Le nom du client est requis</validation-message>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Sexe</label>
+                                            <div class="col-md-9">
+                                                <input type="radio" name="sexe" id="sexeH" value="homme" icheck="blue"
+                                                       ng-model="selectedClient.sexe" ng-required="!selectedClient.sexe" />
+                                                <label for="sexeH" class="control-label">Homme</label>
+                                                <input type="radio" name="sexe" id="sexeF" value="femme" icheck="blue"
+                                                       ng-model="selectedClient.sexe" ng-required="!selectedClient.sexe" />
+                                                <label for="sexeF" class="control-label">Femme</label>
+                                                <input type="radio" name="sexe" id="sexeA" value="autre" icheck="blue"
+                                                       ng-model="selectedClient.sexe" ng-required="!selectedClient.sexe" />
+                                                <label for="sexeA" class="control-label">Autre</label>
+                                                
+                                                <validation-message for="sexe" validator="required" submitted="clientConfirmed">Le sexe du client est requis</validation-message>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="dateDeNaissance">Date de naissance</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="dateDeNaissance" name="dateDeNaissance" class="form-control"
+                                                       ng-model="selectedClient.dateDeNaissance" datepicker/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="numeroTelephone">Numéro de téléphone</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="numeroTelephone" name="numeroTelephone" class="form-control"
+                                                       ng-model="selectedClient.numeroTelephone" ng-maxlength="100" ng-required="true"/>
+                                                <validation-message for="numeroTelephone" validator="maxlength" submitted="clientConfirmed">Le numéro de téléphone ne peut dépasser 100 caractères</validation-message>
+                                                <validation-message for="numeroTelephone" validator="required" submitted="clientConfirmed">Le numéro de téléphone est requis</validation-message>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="courriel">Adresse courriel</label>
+                                            <div class="col-md-9">
+                                                <input type="email" id="courriel" name="courriel" class="form-control"
+                                                       ng-model="selectedClient.courriel"/>
+                                                <validation-message for="courriel" validator="email" submitted="clientConfirmed">L'adresse courriel est invalide</validation-message>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="block-section">
+                                <h4 class="sub-header">Adresse</h4>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label class="control-label" for="adresseCivique">Adresse civique</label>
+                                            <input type="text" id="adresseCivique" name="adresseCivique" class="form-control"
+                                                   ng-model="selectedClient.adresseCivique" ng-required="true" ng-maxlength="255" />
+                                            <validation-message for="adresseCivique" validator="maxlength" submitted="clientConfirmed">L'adresse ne peut dépasser 255 caractères</validation-message>
+                                            <validation-message for="adresseCivique" validator="required" submitted="clientConfirmed">L'adresse est requise</validation-message>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="control-label" for="ville">Ville</label>
+                                            <input type="text" id="ville" name="ville" class="form-control"
+                                                   ng-model="selectedClient.ville" ng-required="true" ng-maxlength="100" />
+                                            <validation-message for="ville" validator="maxlength" submitted="clientConfirmed">La ville ne peut dépasser 100 caractères</validation-message>
+                                            <validation-message for="ville" validator="required" submitted="clientConfirmed">La ville est requise</validation-message>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label class="control-label" for="province">Province</label>
+                                            <input type="text" id="province" name="province" class="form-control"
+                                                   ng-model="selectedClient.province" ng-required="true" ng-maxlength="100" />
+                                            <validation-message for="province" validator="maxlength" submitted="clientConfirmed">La province ne peut dépasser 100 caractères</validation-message>
+                                            <validation-message for="province" validator="required" submitted="clientConfirmed">La province est requise</validation-message>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label class="control-label" for="adresseCivique">Pays</label>
+                                            <input type="text" id="Pays" name="Pays" class="form-control"
+                                                   ng-model="selectedClient.pays" ng-required="true" ng-maxlength="255" />
+                                            <validation-message for="Pays" validator="maxlength" submitted="clientConfirmed">Le pays ne peut dépasser 255 caractères</validation-message>
+                                            <validation-message for="Pays" validator="required" submitted="clientConfirmed">Le pays est requis</validation-message>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label class="control-label" for="codePostal">Code Postal</label>
+                                            <input type="text" id="codePostal" name="codePostal" class="form-control"
+                                                   ng-model="selectedClient.codePostal" ng-required="true" ng-pattern="/^([A-Za-z]\d){3}$/g" placeholder="H1H1H1" />
+                                            <validation-message for="codePostal" validator="pattern" submitted="clientConfirmed">Le code postal est invalide</validation-message>
+                                            <validation-message for="codePostal" validator="required" submitted="clientConfirmed">Le code postal est requis</validation-message>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="block-section form-horizontal">
+                                <h4 class="sub-header">Assurance</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="nomAssureur">Nom</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="nomAssureur" name="nomAssureur" class="form-control"
+                                                       ng-model="selectedClient.nomAssureur"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="numeroAssureur">Numéro de téléphone</label>
+                                            <div class="col-md-9">
+                                                <input type="text" id="numeroAssureur" name="numeroAssureur" class="form-control"
+                                                       ng-model="selectedClient.numeroTelephoneAssureur" ng-maxlength="100"/>
+                                                <validation-message for="numeroAssureur" validator="maxlength" submitted="clientConfirmed">Le numéro de téléphone ne peut dépasser 100 caractères</validation-message>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button type="button" class="btn btn-danger" ng-click="removeClient()" ng-if="dossier.clients.length > 1" ripple>Supprimer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-md-offset-6">
+            <button type="submit" class="btn btn-primary" ripple>Créer le dossier</button>
+        </div>
+    </div>
+</form>

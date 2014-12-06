@@ -1,0 +1,796 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PsyDocsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Adresse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AdresseCivique" Type="nvarchar" MaxLength="255" />
+          <Property Name="CodePostal" Type="nvarchar" MaxLength="6" />
+          <Property Name="Province" Type="nvarchar" MaxLength="100" />
+          <Property Name="Pays" Type="nvarchar" MaxLength="100" />
+          <Property Name="Ville" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AdresseId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DossierId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Prenom" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="NumeroTelephone" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Sexe" Type="int" Nullable="false" />
+          <Property Name="Courriel" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateDeNaissance" Type="datetime2" Precision="0" />
+          <Property Name="Reference" Type="nvarchar(max)" />
+          <Property Name="NomAssureur" Type="nvarchar(max)" />
+          <Property Name="NumeroTelephoneAssureur" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Titre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Chemin" Type="nvarchar" MaxLength="260" />
+          <Property Name="TypeMime" Type="nvarchar" MaxLength="50" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dossier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UtilisateurId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModaliteTraitementId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Numero" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ouverture" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Fermeture" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="ModaliteTraitement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Seance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TherapieId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Duree" Type="time" Precision="7" Nullable="false" />
+          <Property Name="AideMemoire" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DocumentId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TypeSectionId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Contenu" Type="nvarchar(max)" />
+          <Property Name="Position" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Therapie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DossierId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeDocument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeDocumentTypeSection">
+          <Key>
+            <PropertyRef Name="TypeDocumentId" />
+            <PropertyRef Name="TypeSectionId" />
+          </Key>
+          <Property Name="TypeDocumentId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TypeSectionId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Prenom" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="NumeroTelephone" Type="nvarchar" MaxLength="100" />
+          <Property Name="Courriel" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="MotDePasse" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateExpiration" Type="datetime2" Precision="7" />
+          <Property Name="EstAdministrateur" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_Client_dbo_Adresse_AdresseId">
+          <End Role="Adresse" Type="Self.Adresse" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="AdresseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Client_dbo_Dossier_DossierId">
+          <End Role="Dossier" Type="Self.Dossier" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dossier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="DossierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Seance_dbo_Therapie_TherapieId">
+          <End Role="Therapie" Type="Self.Therapie" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Seance" Type="Self.Seance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Therapie">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Seance">
+              <PropertyRef Name="TherapieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Section_dbo_Document_DocumentId">
+          <End Role="Document" Type="Self.Document" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Section" Type="Self.Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Section_dbo_TypeSection_TypeSectionId">
+          <End Role="TypeSection" Type="Self.TypeSection" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Section" Type="Self.Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeSection">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="TypeSectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Therapie_dbo_Dossier_DossierId">
+          <End Role="Dossier" Type="Self.Dossier" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Therapie" Type="Self.Therapie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dossier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Therapie">
+              <PropertyRef Name="DossierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dossier_ModaliteTraitement">
+          <End Role="ModaliteTraitement" Type="Self.ModaliteTraitement" Multiplicity="1" />
+          <End Role="Dossier" Type="Self.Dossier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModaliteTraitement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dossier">
+              <PropertyRef Name="ModaliteTraitementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dossier_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="Dossier" Type="Self.Dossier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dossier">
+              <PropertyRef Name="UtilisateurId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeDocumentTypeSection_TypeDocument">
+          <End Role="TypeDocument" Type="Self.TypeDocument" Multiplicity="1" />
+          <End Role="TypeDocumentTypeSection" Type="Self.TypeDocumentTypeSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeDocument">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TypeDocumentTypeSection">
+              <PropertyRef Name="TypeDocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeDocumentTypeSection_TypeSection">
+          <End Role="TypeSection" Type="Self.TypeSection" Multiplicity="1" />
+          <End Role="TypeDocumentTypeSection" Type="Self.TypeDocumentTypeSection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeSection">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TypeDocumentTypeSection">
+              <PropertyRef Name="TypeSectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PsyDocsModelStoreContainer">
+          <EntitySet Name="Adresse" EntityType="Self.Adresse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dossier" EntityType="Self.Dossier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModaliteTraitement" EntityType="Self.ModaliteTraitement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seance" EntityType="Self.Seance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Section" EntityType="Self.Section" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Therapie" EntityType="Self.Therapie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeDocument" EntityType="Self.TypeDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeDocumentTypeSection" EntityType="Self.TypeDocumentTypeSection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeSection" EntityType="Self.TypeSection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_Client_dbo_Adresse_AdresseId" Association="Self.FK_dbo_Client_dbo_Adresse_AdresseId">
+            <End Role="Adresse" EntitySet="Adresse" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Client_dbo_Dossier_DossierId" Association="Self.FK_dbo_Client_dbo_Dossier_DossierId">
+            <End Role="Dossier" EntitySet="Dossier" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Seance_dbo_Therapie_TherapieId" Association="Self.FK_dbo_Seance_dbo_Therapie_TherapieId">
+            <End Role="Therapie" EntitySet="Therapie" />
+            <End Role="Seance" EntitySet="Seance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Section_dbo_Document_DocumentId" Association="Self.FK_dbo_Section_dbo_Document_DocumentId">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="Section" EntitySet="Section" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Section_dbo_TypeSection_TypeSectionId" Association="Self.FK_dbo_Section_dbo_TypeSection_TypeSectionId">
+            <End Role="TypeSection" EntitySet="TypeSection" />
+            <End Role="Section" EntitySet="Section" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Therapie_dbo_Dossier_DossierId" Association="Self.FK_dbo_Therapie_dbo_Dossier_DossierId">
+            <End Role="Dossier" EntitySet="Dossier" />
+            <End Role="Therapie" EntitySet="Therapie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dossier_ModaliteTraitement" Association="Self.FK_Dossier_ModaliteTraitement">
+            <End Role="ModaliteTraitement" EntitySet="ModaliteTraitement" />
+            <End Role="Dossier" EntitySet="Dossier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dossier_Utilisateur" Association="Self.FK_Dossier_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Dossier" EntitySet="Dossier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeDocumentTypeSection_TypeDocument" Association="Self.FK_TypeDocumentTypeSection_TypeDocument">
+            <End Role="TypeDocument" EntitySet="TypeDocument" />
+            <End Role="TypeDocumentTypeSection" EntitySet="TypeDocumentTypeSection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeDocumentTypeSection_TypeSection" Association="Self.FK_TypeDocumentTypeSection_TypeSection">
+            <End Role="TypeSection" EntitySet="TypeSection" />
+            <End Role="TypeDocumentTypeSection" EntitySet="TypeDocumentTypeSection" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PsyDocsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Adresse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="AdresseCivique" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CodePostal" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="Province" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Pays" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Ville" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_dbo_Client_dbo_Adresse_AdresseId" FromRole="Adresse" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="AdresseId" Type="Guid" Nullable="false" />
+          <Property Name="DossierId" Type="Guid" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prenom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumeroTelephone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sexe" Nullable="false" Type="PsyDocsModel.Sexe" />
+          <Property Name="Courriel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateDeNaissance" Type="DateTime" Precision="0" />
+          <Property Name="Reference" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NomAssureur" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NumeroTelephoneAssureur" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Adresse" Relationship="Self.FK_dbo_Client_dbo_Adresse_AdresseId" FromRole="Client" ToRole="Adresse" />
+          <NavigationProperty Name="Dossier" Relationship="Self.FK_dbo_Client_dbo_Dossier_DossierId" FromRole="Client" ToRole="Dossier" />
+        </EntityType>
+        <EntityType Name="Document" Abstract="true">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Titre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Sections" Relationship="PsyDocsModel.FK_dbo_Section_dbo_Document_DocumentId" FromRole="Document" ToRole="Section" />
+        </EntityType>
+        <EntityType Name="Dossier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Numero" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ouverture" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Fermeture" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_dbo_Client_dbo_Dossier_DossierId" FromRole="Dossier" ToRole="Client" />
+          <NavigationProperty Name="Therapies" Relationship="Self.FK_dbo_Therapie_dbo_Dossier_DossierId" FromRole="Dossier" ToRole="Therapie" />
+          <Property Name="UtilisateurId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Utilisateur" Relationship="PsyDocsModel.FK_Dossier_Utilisateur" FromRole="Dossier" ToRole="Utilisateur" />
+          <Property Name="ModaliteTraitementId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Modalite" Relationship="PsyDocsModel.FK_Dossier_ModaliteTraitement" FromRole="Dossier" ToRole="ModaliteTraitement" />
+        </EntityType>
+        <EntityType Name="Seance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="TherapieId" Type="Guid" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Duree" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Therapie" Relationship="Self.FK_dbo_Seance_dbo_Therapie_TherapieId" FromRole="Seance" ToRole="Therapie" />
+          <Property Name="AideMemoire" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Section">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="DocumentId" Type="Guid" Nullable="false" />
+          <Property Name="TypeSectionId" Type="Guid" Nullable="false" />
+          <Property Name="Contenu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TypeSection" Relationship="Self.FK_dbo_Section_dbo_TypeSection_TypeSectionId" FromRole="Section" ToRole="TypeSection" />
+          <NavigationProperty Name="Document" Relationship="PsyDocsModel.FK_dbo_Section_dbo_Document_DocumentId" FromRole="Section" ToRole="Document" />
+        </EntityType>
+        <EntityType Name="Therapie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="DossierId" Type="Guid" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Dossier" Relationship="Self.FK_dbo_Therapie_dbo_Dossier_DossierId" FromRole="Therapie" ToRole="Dossier" />
+          <NavigationProperty Name="Seances" Relationship="Self.FK_dbo_Seance_dbo_Therapie_TherapieId" FromRole="Therapie" ToRole="Seance" />
+        </EntityType>
+        <EntityType Name="TypeDocument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TypeSections" Relationship="PsyDocsModel.TypeDocumentTypeSection" FromRole="TypeDocument" ToRole="TypeSection" />
+        </EntityType>
+        <EntityType Name="TypeSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Sections" Relationship="Self.FK_dbo_Section_dbo_TypeSection_TypeSectionId" FromRole="TypeSection" ToRole="Section" />
+          <NavigationProperty Name="TypeDocuments" Relationship="PsyDocsModel.TypeDocumentTypeSection" FromRole="TypeSection" ToRole="TypeDocument" />
+        </EntityType>
+        <EntityType Name="Utilisateur" Abstract="false">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Nom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prenom" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumeroTelephone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Courriel" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MotDePasse" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateExpiration" Type="DateTime" Precision="7" />
+          <Property Name="EstAdministrateur" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Dossiers" Relationship="PsyDocsModel.FK_Dossier_Utilisateur" FromRole="Utilisateur" ToRole="Dossier" />
+        </EntityType>
+        <Association Name="FK_dbo_Client_dbo_Adresse_AdresseId">
+          <End Role="Adresse" Type="Self.Adresse" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adresse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="AdresseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Client_dbo_Dossier_DossierId">
+          <End Role="Dossier" Type="Self.Dossier" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dossier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="DossierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Therapie_dbo_Dossier_DossierId">
+          <End Role="Dossier" Type="Self.Dossier" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Therapie" Type="Self.Therapie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dossier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Therapie">
+              <PropertyRef Name="DossierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Seance_dbo_Therapie_TherapieId">
+          <End Role="Therapie" Type="Self.Therapie" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Seance" Type="Self.Seance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Therapie">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Seance">
+              <PropertyRef Name="TherapieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Section_dbo_TypeSection_TypeSectionId">
+          <End Role="TypeSection" Type="Self.TypeSection" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Section" Type="Self.Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeSection">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="TypeSectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PsyDocsContext" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="Adresses" EntityType="Self.Adresse" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Dossiers" EntityType="Self.Dossier" />
+          <EntitySet Name="Seances" EntityType="Self.Seance" />
+          <EntitySet Name="Sections" EntityType="Self.Section" />
+          <EntitySet Name="Therapies" EntityType="Self.Therapie" />
+          <EntitySet Name="TypeDocuments" EntityType="Self.TypeDocument" />
+          <EntitySet Name="TypeSections" EntityType="Self.TypeSection" />
+          <EntitySet Name="Utilisateurs" EntityType="Self.Utilisateur" />
+          <AssociationSet Name="FK_dbo_Client_dbo_Adresse_AdresseId" Association="Self.FK_dbo_Client_dbo_Adresse_AdresseId">
+            <End Role="Adresse" EntitySet="Adresses" />
+            <End Role="Client" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Client_dbo_Dossier_DossierId" Association="Self.FK_dbo_Client_dbo_Dossier_DossierId">
+            <End Role="Dossier" EntitySet="Dossiers" />
+            <End Role="Client" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Therapie_dbo_Dossier_DossierId" Association="Self.FK_dbo_Therapie_dbo_Dossier_DossierId">
+            <End Role="Dossier" EntitySet="Dossiers" />
+            <End Role="Therapie" EntitySet="Therapies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Seance_dbo_Therapie_TherapieId" Association="Self.FK_dbo_Seance_dbo_Therapie_TherapieId">
+            <End Role="Therapie" EntitySet="Therapies" />
+            <End Role="Seance" EntitySet="Seances" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Section_dbo_TypeSection_TypeSectionId" Association="Self.FK_dbo_Section_dbo_TypeSection_TypeSectionId">
+            <End Role="TypeSection" EntitySet="TypeSections" />
+            <End Role="Section" EntitySet="Sections" />
+          </AssociationSet>
+          <EntitySet Name="Documents" EntityType="PsyDocsModel.Document" />
+          <AssociationSet Name="FK_Dossier_Utilisateur" Association="PsyDocsModel.FK_Dossier_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+            <End Role="Dossier" EntitySet="Dossiers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Section_dbo_Document_DocumentId" Association="PsyDocsModel.FK_dbo_Section_dbo_Document_DocumentId">
+            <End Role="Document" EntitySet="Documents" />
+            <End Role="Section" EntitySet="Sections" />
+          </AssociationSet>
+          <AssociationSet Name="TypeDocumentTypeSection" Association="PsyDocsModel.TypeDocumentTypeSection">
+            <End Role="TypeDocument" EntitySet="TypeDocuments" />
+            <End Role="TypeSection" EntitySet="TypeSections" />
+          </AssociationSet>
+          <EntitySet Name="ModaliteTraitements" EntityType="PsyDocsModel.ModaliteTraitement" />
+          <AssociationSet Name="FK_Dossier_ModaliteTraitement" Association="PsyDocsModel.FK_Dossier_ModaliteTraitement">
+            <End Role="ModaliteTraitement" EntitySet="ModaliteTraitements" />
+            <End Role="Dossier" EntitySet="Dossiers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EnumType Name="Sexe" UnderlyingType="Byte">
+          <Member Name="Homme" />
+          <Member Name="Femme" />
+          <Member Name="Autre" />
+        </EnumType>
+        <EntityType Name="DocumentInterne" BaseType="PsyDocsModel.Document" />
+        <EntityType Name="DocumentExterne" BaseType="PsyDocsModel.Document" >
+          <Property Name="Chemin" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+          <Property Name="TypeMime" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Dossier_Utilisateur">
+          <End Type="PsyDocsModel.Utilisateur" Role="Utilisateur" Multiplicity="1" />
+          <End Type="PsyDocsModel.Dossier" Role="Dossier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dossier">
+              <PropertyRef Name="UtilisateurId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Section_dbo_Document_DocumentId">
+          <End Type="PsyDocsModel.Document" Role="Document" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="PsyDocsModel.Section" Role="Section" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Section">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TypeDocumentTypeSection">
+          <End Type="PsyDocsModel.TypeDocument" Role="TypeDocument" Multiplicity="*" />
+          <End Type="PsyDocsModel.TypeSection" Role="TypeSection" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ModaliteTraitement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Dossiers" Relationship="PsyDocsModel.FK_Dossier_ModaliteTraitement" FromRole="ModaliteTraitement" ToRole="Dossier" />
+        </EntityType>
+        <Association Name="FK_Dossier_ModaliteTraitement">
+          <End Type="PsyDocsModel.ModaliteTraitement" Role="ModaliteTraitement" Multiplicity="1" />
+          <End Type="PsyDocsModel.Dossier" Role="Dossier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModaliteTraitement">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dossier">
+              <PropertyRef Name="ModaliteTraitementId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PsyDocsModelStoreContainer" CdmEntityContainer="PsyDocsContext">
+          <EntitySetMapping Name="Adresses">
+            <EntityTypeMapping TypeName="PsyDocsModel.Adresse">
+              <MappingFragment StoreEntitySet="Adresse">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AdresseCivique" ColumnName="AdresseCivique" />
+                <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="Pays" ColumnName="Pays" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="PsyDocsModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AdresseId" ColumnName="AdresseId" />
+                <ScalarProperty Name="DossierId" ColumnName="DossierId" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="NumeroTelephone" ColumnName="NumeroTelephone" />
+                <ScalarProperty Name="Sexe" ColumnName="Sexe" />
+                <ScalarProperty Name="Courriel" ColumnName="Courriel" />
+                <ScalarProperty Name="DateDeNaissance" ColumnName="DateDeNaissance" />
+                <ScalarProperty Name="Reference" ColumnName="Reference" />
+                <ScalarProperty Name="NomAssureur" ColumnName="NomAssureur" />
+                <ScalarProperty Name="NumeroTelephoneAssureur" ColumnName="NumeroTelephoneAssureur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dossiers">
+            <EntityTypeMapping TypeName="PsyDocsModel.Dossier">
+              <MappingFragment StoreEntitySet="Dossier">
+                <ScalarProperty Name="ModaliteTraitementId" ColumnName="ModaliteTraitementId" />
+                <ScalarProperty Name="UtilisateurId" ColumnName="UtilisateurId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Ouverture" ColumnName="Ouverture" />
+                <ScalarProperty Name="Fermeture" ColumnName="Fermeture" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seances">
+            <EntityTypeMapping TypeName="PsyDocsModel.Seance">
+              <MappingFragment StoreEntitySet="Seance">
+                <ScalarProperty Name="AideMemoire" ColumnName="AideMemoire" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TherapieId" ColumnName="TherapieId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Duree" ColumnName="Duree" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sections">
+            <EntityTypeMapping TypeName="PsyDocsModel.Section">
+              <MappingFragment StoreEntitySet="Section">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="TypeSectionId" ColumnName="TypeSectionId" />
+                <ScalarProperty Name="Contenu" ColumnName="Contenu" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Therapies">
+            <EntityTypeMapping TypeName="PsyDocsModel.Therapie">
+              <MappingFragment StoreEntitySet="Therapie">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DossierId" ColumnName="DossierId" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeDocuments">
+            <EntityTypeMapping TypeName="PsyDocsModel.TypeDocument">
+              <MappingFragment StoreEntitySet="TypeDocument">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeSections">
+            <EntityTypeMapping TypeName="PsyDocsModel.TypeSection">
+              <MappingFragment StoreEntitySet="TypeSection">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utilisateurs">
+            <EntityTypeMapping TypeName="PsyDocsModel.Utilisateur">
+              <MappingFragment StoreEntitySet="Utilisateur">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="NumeroTelephone" ColumnName="NumeroTelephone" />
+                <ScalarProperty Name="Courriel" ColumnName="Courriel" />
+                <ScalarProperty Name="MotDePasse" ColumnName="MotDePasse" />
+                <ScalarProperty Name="DateExpiration" ColumnName="DateExpiration" />
+                <ScalarProperty Name="EstAdministrateur" ColumnName="EstAdministrateur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="IsTypeOf(PsyDocsModel.Document)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="Titre" ColumnName="Titre" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(PsyDocsModel.DocumentExterne)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TypeMime" ColumnName="TypeMime" />
+                <ScalarProperty Name="Chemin" ColumnName="Chemin" />
+                <Condition ColumnName="Discriminator" Value="Externe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(PsyDocsModel.DocumentInterne)">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <Condition ColumnName="Discriminator" Value="Interne" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="TypeDocumentTypeSection" TypeName="PsyDocsModel.TypeDocumentTypeSection" StoreEntitySet="TypeDocumentTypeSection">
+            <EndProperty Name="TypeSection">
+              <ScalarProperty Name="Id" ColumnName="TypeSectionId" />
+            </EndProperty>
+            <EndProperty Name="TypeDocument">
+              <ScalarProperty Name="Id" ColumnName="TypeDocumentId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="ModaliteTraitements">
+            <EntityTypeMapping TypeName="PsyDocsModel.ModaliteTraitement">
+              <MappingFragment StoreEntitySet="ModaliteTraitement">
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

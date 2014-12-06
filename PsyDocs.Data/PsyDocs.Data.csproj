@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7DFC2706-66EB-429D-97C5-1F05F715192D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PsyDocs.Data</RootNamespace>
+    <AssemblyName>PsyDocs.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adresse.cs">
+      <DependentUpon>PsyDocsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Client.cs">
+      <DependentUpon>PsyDocsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Document.cs">
+      <DependentUpon>PsyDocsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentExterne.cs">
+      <DependentUpon>PsyDocsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentInterne.cs">
+      <DependentUpon>PsyDocsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dossier.cs">
+      <DependentUpon>PsyDocsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModaliteTraitement.cs">
+      <DependentUpon>PsyDocsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PsyDocsModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PsyDocsModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PsyDocsModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PsyDocsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PsyDocsModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PsyDocsModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Seance.cs">
+      <DependentUpon>PsyDocsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Section.cs">
+      <DependentUpon>PsyDocsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sexe.cs">
+      <DependentUpon>PsyDocsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Therapie.cs">
+      <DependentUpon>PsyDocsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TypeDocument.cs">
+      <DependentUpon>PsyDocsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TypeSection.cs">
+      <DependentUpon>PsyDocsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utilisateur.cs">
+      <DependentUpon>PsyDocsModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <EntityDeploy Include="PsyDocsModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PsyDocsModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="PsyDocsModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PsyDocsModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="PsyDocsModel.edmx.diagram">
+      <DependentUpon>PsyDocsModel.edmx</DependentUpon>
+    </None>
+    <None Include="PsyDocsModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PsyDocsModel.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PsyDocs.Utils\PsyDocs.Utils.csproj">
+      <Project>{96ade24c-3520-4164-995c-dc185245e1b4}</Project>
+      <Name>PsyDocs.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

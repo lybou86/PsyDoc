@@ -1,0 +1,12 @@
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Data\bin\Debug\PsyDocs.Data.dll.config
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Data\bin\Debug\PsyDocs.Data.dll
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Data\bin\Debug\PsyDocs.Data.pdb
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Data\bin\Debug\EntityFramework.dll
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Data\bin\Debug\PsyDocs.Utils.dll
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Data\bin\Debug\PsyDocs.Utils.pdb
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Data\bin\Debug\EntityFramework.xml
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Data\obj\Debug\PsyDocs.Data.csprojResolveAssemblyReference.cache
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Data\obj\Debug\PsyDocs.Data.dll
+C:\Users\lydia\Desktop\universite\_Automne 2014\ProjetDAnalyseEtDeModélisation_INM5151\Psydoc\PsyDocs\PsyDocs.Data\obj\Debug\PsyDocs.Data.pdb

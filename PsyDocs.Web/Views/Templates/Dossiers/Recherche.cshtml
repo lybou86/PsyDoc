@@ -1,0 +1,36 @@
+﻿<div class="content-header">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="header-section">
+                <h1>Recherche de dossiers</h1>
+            </div>
+        </div>
+        <div class="col-sm-6 hidden-xs">
+            <div class="header-section">
+                <ul class="breadcrumb breadcrumb-top">
+                    <li>Dossiers</li>
+                    <li>Recherche</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <table class="table table-striped">
+        <tr>
+            <th>NUMERO</th>
+            <th>OUVERTURE</th>
+            <th>FERMETURE</th>
+        </tr>
+        <tr ng-repeat="d in dossiers">
+            <td>{{d.numero}}</td>
+            <td>{{d.ouverture}}</td>
+            <td>{{d.ouverture}}</td>
+        </tr>
+    </table>
+</div>
+
+<div class="row">
+    
+</div>

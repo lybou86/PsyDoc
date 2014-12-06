@@ -1,0 +1,22 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Drop
+       [dbo].[FK_TypeDocumentTypeSection_TypeDocument] (Foreign Key)
+       [dbo].[FK_TypeDocumentTypeSection_TypeSection] (Foreign Key)
+     Create
+       [dbo].[FK_TypeDocumentTypeSection_TypeDocument] (Foreign Key)
+       [dbo].[FK_TypeDocumentTypeSection_TypeSection] (Foreign Key)
+
+** Supporting actions
+
+The project and target databases have different collation settings. Deployment errors might occur.
+
